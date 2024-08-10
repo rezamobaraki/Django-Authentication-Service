@@ -137,3 +137,14 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'accounts.User'
+
+# TODO: Fix location of these ttls
+LOGIN_TOKEN_TTL = env.int("LOGIN_TOKEN_TTL", default=2) * 60
+REGISTER_TOKEN_TTL = env.int("REGISTER_TOKEN_TTL", default=3) * 60
+REGISTER_OTP_TTL = env.int("REGISTER_OTP_TTL", default=2) * 60
+
+from core.settings.third_parties.cors import *  # noqa
+from core.settings.third_parties.drf import *  # noqa
+from core.settings.third_parties.jwt import *  # noqa
+from core.settings.third_parties.caches import *  # noqad
+from core.settings.third_parties.swagger import *  # noqa
