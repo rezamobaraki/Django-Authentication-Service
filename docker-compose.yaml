@@ -13,6 +13,7 @@ services:
     depends_on:
       - postgres
       - redis
+      - celery
     env_file:
       - .compose/config.env
     networks:
