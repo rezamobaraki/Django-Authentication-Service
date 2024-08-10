@@ -7,7 +7,7 @@ class CustomSwaggerAutoSchema(SwaggerAutoSchema):
 
         tags = self.overrides.get('tags')
         if not tags:
-            tags = [f"{operation_keys[0]}-{operation_keys[2]}"]
+            tags = [f"{operation_keys[0]}-{operation_keys[1]}"]
         if hasattr(self.view, "swagger_tags"):
             tags = self.view.swagger_tags
 
