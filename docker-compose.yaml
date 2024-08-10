@@ -54,7 +54,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.local
-    command: bash -c "celery -A config.celery worker -l INFO"
+    command: bash -c "celery -A core.celery worker -l INFO"
     depends_on:
       - postgres
       - redis

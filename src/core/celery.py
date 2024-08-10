@@ -16,7 +16,6 @@ if password:
 else:
     redis_url = f"redis://{host}:{port}/{celery_db}"  # noqa
 
-
 celery_app = Celery('achareh', broker=redis_url)
 
 # Using a string here means the worker doesn't have to serialize
