@@ -1,5 +1,5 @@
 """
-ASGI config for Boilerplate project.
+ASGI config for Achareh project.
 
 It exposes the ASGI callable as a module-level variable named ``application``.
 

@@ -1,5 +1,5 @@
 """
-WSGI config for Boilerplate project.
+WSGI config for Achareh project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
