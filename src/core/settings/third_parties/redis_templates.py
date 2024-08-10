@@ -3,18 +3,23 @@ import dataclasses
 
 @dataclasses.dataclass(frozen=True)
 class RedisTemplates:
-    auth_signup_otp: str = "auth:signup:otp:{cellphone}"
-    auth_signup_token: str = "auth:signup:token:{cellphone}"
+    auth_register_otp: str = "auth:register:otp:{cellphone}"
     auth_login_token: str = "auth:login:token:{cellphone}"
+    auth_register_token: str = "auth:register:token:{token}"
+    auth_register_information: str = "auth:register:information:{token}"
 
-    def format_auth_signup_otp(self, cellphone: str) -> str:
-        return self.auth_signup_otp.format(cellphone=cellphone)
+    @classmethod
+    def format_auth_register_otp(cls, cellphone: str) -> str:
+        return cls.auth_register_otp.format(cellphone=cellphone)
 
-    def format_auth_login_token(self, cellphone: str) -> str:
-        return self.auth_login_token.format(cellphone=cellphone)
+    @classmethod
+    def format_auth_register_token(cls, token: str) -> str:
+        return cls.auth_register_token.format(token=token)
 
-    def format_auth_signup_token(self, cellphone: str) -> str:
-        return self.auth_signup_token.format(cellphone=cellphone)
+    @classmethod
+    def format_auth_login_token(cls, cellphone: str) -> str:
+        return cls.auth_login_token.format(cellphone=cellphone)
 
-
-redis_templates = RedisTemplates()
+    @classmethod
+    def format_auth_register_information(cls, token: str) -> str:
+        return cls.auth_register_information.format(token=token)
