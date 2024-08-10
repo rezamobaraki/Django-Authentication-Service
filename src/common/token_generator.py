@@ -5,7 +5,7 @@ import time
 
 from core.env import env
 
-otp_length = env.int("AUTH_OTP_LENGTH", default=6)
+otp_length = env.int("AUTH_OTP_LENGTH", default=5)
 
 
 def generate_otp() -> int:

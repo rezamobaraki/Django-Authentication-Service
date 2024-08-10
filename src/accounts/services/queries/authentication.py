@@ -1,5 +1,4 @@
-from redis import Redis
-
+from core.settings.third_parties.redis import Redis
 from core.settings.third_parties.redis_templates import RedisTemplates
 
 

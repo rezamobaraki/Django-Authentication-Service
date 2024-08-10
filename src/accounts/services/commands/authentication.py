@@ -1,13 +1,13 @@
 import logging
 
 from django.conf import settings
-from redis import Redis
 
 from accounts.models import User
 from common.token_generator import generate_otp, generate_token
+from core.settings.third_parties.redis import Redis
 from core.settings.third_parties.redis_templates import RedisTemplates
 
-logger = logging.getLogger(__name__)
+logging.basicConfig(level=logging.INFO)
 
 
 def authentication_register_send_otp(*, cellphone: str):
@@ -19,7 +19,7 @@ def authentication_register_send_otp(*, cellphone: str):
     )
     #  send_sms(cellphone=cellphone, otp=otp)
     if settings.DEBUG:
-        logger.debug(f"Generated OTP for {cellphone}: {otp}")
+        logging.info(f"Generated OTP for {cellphone}: {otp}")
 
 
 def authentication_register_token(*, cellphone: str) -> str:
@@ -32,7 +32,7 @@ def authentication_register_token(*, cellphone: str) -> str:
     return token
 
 
-def authentication_register_information(*, first_name, last_name, cellphone, email=None):
+def authentication_register_information(*, first_name, last_name, cellphone, email):
     token = generate_token()
     data = {"first_name": first_name, "last_name": last_name, "email": email, "cellphone": cellphone, "token": token}
     redis_template = RedisTemplates.format_auth_register_information(token=token)

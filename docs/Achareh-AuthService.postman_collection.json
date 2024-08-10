@@ -1,0 +1,848 @@
+{
+	"info": {
+		"_postman_id": "f30baf45-0abe-4d96-9f73-8d0ac4cc10d7",
+		"name": "Achareh-AuthService",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "36182462"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();",
+							"var token = jsonData.token ? jsonData.token : \"\";",
+							"pm.environment.set(\"login-token\", token);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"cellphone\":\"+989335668353\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8000/api/v1/accounts/auth/",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"accounts",
+						"auth",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Login Process Response",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"cellphone\":\"+989335668353\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/api/v1/accounts/auth/",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"accounts",
+								"auth",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sat, 10 Aug 2024 23:44:34 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.12.4"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Allow",
+							"value": "POST, OPTIONS"
+						},
+						{
+							"key": "djdt-store-id",
+							"value": "fb607e61da914582b64809686ff4bfe9"
+						},
+						{
+							"key": "Server-Timing",
+							"value": "TimerPanel_utime;dur=321.0379999999997;desc=\"User CPU time\", TimerPanel_stime;dur=154.53799999999995;desc=\"System CPU time\", TimerPanel_total;dur=475.5759999999997;desc=\"Total CPU time\", TimerPanel_total_time;dur=440.02851600089343;desc=\"Elapsed time\", SQLPanel_sql_time;dur=5.887678998988122;desc=\"SQL 1 queries\", CachePanel_total_time;dur=0;desc=\"Cache 0 Calls\""
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "67"
+						},
+						{
+							"key": "Vary",
+							"value": "Cookie"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"token\": \"NmEyZGZkOWNlZDI1YmMwZl8xNzIzMzMzNDc0\",\n    \"user_state\": \"old\"\n}"
+				},
+				{
+					"name": "Register Process Response",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"cellphone\":\"+989335668351\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/api/v1/accounts/auth/",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"accounts",
+								"auth",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sat, 10 Aug 2024 23:47:02 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.12.4"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Allow",
+							"value": "POST, OPTIONS"
+						},
+						{
+							"key": "djdt-store-id",
+							"value": "aff65e5aef0e40879b3797ad82f63b75"
+						},
+						{
+							"key": "Server-Timing",
+							"value": "TimerPanel_utime;dur=604.7260000000012;desc=\"User CPU time\", TimerPanel_stime;dur=281.4859999999997;desc=\"System CPU time\", TimerPanel_total;dur=886.2120000000009;desc=\"Total CPU time\", TimerPanel_total_time;dur=9732.366412994452;desc=\"Elapsed time\", SQLPanel_sql_time;dur=3.5452149968477897;desc=\"SQL 1 queries\", CachePanel_total_time;dur=0;desc=\"Cache 0 Calls\""
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "20"
+						},
+						{
+							"key": "Vary",
+							"value": "Cookie"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"user_state\": \"new\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Register-Verify",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();",
+							"var token = jsonData.token",
+							"pm.environment.set(\"register-verify-token\",token)"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"code\": \"639795\",\n    \"cellphone\": \"+989335668353\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8000/api/v1/accounts/auth/register/verify/",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"accounts",
+						"auth",
+						"register",
+						"verify",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"code\": \"639795\",\n    \"cellphone\": \"+989335668353\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/api/v1/accounts/auth/register/verify/",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"accounts",
+								"auth",
+								"register",
+								"verify",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sat, 10 Aug 2024 23:19:33 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.12.4"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Allow",
+							"value": "POST, OPTIONS"
+						},
+						{
+							"key": "djdt-store-id",
+							"value": "81b9c59adc9149fa801fe42ae2463605"
+						},
+						{
+							"key": "Server-Timing",
+							"value": "TimerPanel_utime;dur=51.31599999999992;desc=\"User CPU time\", TimerPanel_stime;dur=2.8770000000015727;desc=\"System CPU time\", TimerPanel_total;dur=54.19300000000149;desc=\"Total CPU time\", TimerPanel_total_time;dur=61.86748699838063;desc=\"Elapsed time\", SQLPanel_sql_time;dur=0;desc=\"SQL 0 queries\", CachePanel_total_time;dur=0;desc=\"Cache 0 Calls\""
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "48"
+						},
+						{
+							"key": "Vary",
+							"value": "Cookie"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"token\": \"YTFjOGYwZDA1M2Q0MWFjZl8xNzIzMzMxOTcz\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Register-Information",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();",
+							"var token = jsonData.token",
+							"pm.environment.set(\"register-information-token\",token)"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"token\": \"YTFjOGYwZDA1M2Q0MWFjZl8xNzIzMzMxOTcz\",\n    \"cellphone\": \"+989335668353\",\n    \"first_name\":\"rezoo\",\n    \"last_name\":\"moba\",\n    \"email\":\"rezoo@gmail.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8000/api/v1/accounts/auth/register/information/",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"accounts",
+						"auth",
+						"register",
+						"information",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"token\": \"YTFjOGYwZDA1M2Q0MWFjZl8xNzIzMzMxOTcz\",\n    \"cellphone\": \"+989335668353\",\n    \"first_name\":\"rezoo\",\n    \"last_name\":\"moba\",\n    \"email\":\"rezoo@gmail.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/api/v1/accounts/auth/register/information/",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"accounts",
+								"auth",
+								"register",
+								"information",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sat, 10 Aug 2024 23:20:59 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.12.4"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Allow",
+							"value": "POST, OPTIONS"
+						},
+						{
+							"key": "djdt-store-id",
+							"value": "1f4f216918e242fca05d268e8ee85904"
+						},
+						{
+							"key": "Server-Timing",
+							"value": "TimerPanel_utime;dur=1280.1739999999998;desc=\"User CPU time\", TimerPanel_stime;dur=356.141;desc=\"System CPU time\", TimerPanel_total;dur=1636.3149999999998;desc=\"Total CPU time\", TimerPanel_total_time;dur=11041.30577599426;desc=\"Elapsed time\", SQLPanel_sql_time;dur=0;desc=\"SQL 0 queries\", CachePanel_total_time;dur=0;desc=\"Cache 0 Calls\""
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "48"
+						},
+						{
+							"key": "Vary",
+							"value": "Cookie"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"token\": \"YWZlZWI5NThlZTdmZDk4YV8xNzIzMzMyMDU1\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Register-Compelete",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();",
+							"var access = jsonData.access",
+							"var refresh = jsonData.refresh",
+							"pm.environment.set(\"doctorAccess\",access)",
+							"pm.environment.set(\"doctorRefresh\",refresh)"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"token\": \"YWZlZWI5NThlZTdmZDk4YV8xNzIzMzMyMDU1\",\n    \"password\": \"1234\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8000/api/v1/accounts/auth/register/complete/",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"accounts",
+						"auth",
+						"register",
+						"complete",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"token\": \"NmEyZGZkOWNlZDI1YmMwZl8xNzIzMzMzNDc0\",\n    \"cellphone\": \"+989335668353\",\n    \"password\": \"1234\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8000/api/v1/accounts/auth/login/",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"accounts",
+						"auth",
+						"login",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"token\": \"NmEyZGZkOWNlZDI1YmMwZl8xNzIzMzMzNDc0\",\n    \"cellphone\": \"+989335668353\",\n    \"password\": \"1234\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/api/v1/accounts/auth/login/",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"accounts",
+								"auth",
+								"login",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sat, 10 Aug 2024 23:45:25 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.12.4"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Allow",
+							"value": "POST, OPTIONS"
+						},
+						{
+							"key": "djdt-store-id",
+							"value": "18b74304615d4a15ad3284a87572dff3"
+						},
+						{
+							"key": "Server-Timing",
+							"value": "TimerPanel_utime;dur=1685.651;desc=\"User CPU time\", TimerPanel_stime;dur=326.23800000000006;desc=\"System CPU time\", TimerPanel_total;dur=2011.8890000000001;desc=\"Total CPU time\", TimerPanel_total_time;dur=1801.1294890020508;desc=\"Elapsed time\", SQLPanel_sql_time;dur=3.691272999276407;desc=\"SQL 1 queries\", CachePanel_total_time;dur=0;desc=\"Cache 0 Calls\""
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "483"
+						},
+						{
+							"key": "Vary",
+							"value": "Cookie"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"access\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIzNTQ5NTI1LCJpYXQiOjE3MjMzMzM1MjUsImp0aSI6IjIzZjA4ZTM4MzE1MDQ2OTdiMzg3MTBlYWU0YWQ0NzUxIiwidXNlcl9pZCI6MX0.6KyAUEaymZQzlWggteLMbpLBWpXGsA6N7s-ljvhrnaE\",\n    \"refresh\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTcyMzkzODMyNSwiaWF0IjoxNzIzMzMzNTI1LCJqdGkiOiJiMjg2NjM5ZTk5MjY0NjQyYmYyYWZlNjBlMTE3YjRhYiIsInVzZXJfaWQiOjF9.Ukw5MR2N152XlREix6soMfDw5wem_RjxcDaIJsmmG8Y\"\n}"
+				},
+				{
+					"name": "400-token",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"token\": \"NmEyZGZkOlZDI1YmMwZl8xNzIzMzMzNDc0\",\n    \"cellphone\": \"+989335668353\",\n    \"password\": \"1234\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/api/v1/accounts/auth/login/",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"accounts",
+								"auth",
+								"login",
+								""
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sat, 10 Aug 2024 23:45:45 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.12.4"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Allow",
+							"value": "POST, OPTIONS"
+						},
+						{
+							"key": "djdt-store-id",
+							"value": "7867a089fb8a4f44a6c21fbace4710c5"
+						},
+						{
+							"key": "Server-Timing",
+							"value": "TimerPanel_utime;dur=66.20399999999992;desc=\"User CPU time\", TimerPanel_stime;dur=3.834000000000115;desc=\"System CPU time\", TimerPanel_total;dur=70.03800000000004;desc=\"Total CPU time\", TimerPanel_total_time;dur=84.15603499452118;desc=\"Elapsed time\", SQLPanel_sql_time;dur=2.849563999916427;desc=\"SQL 1 queries\", CachePanel_total_time;dur=0;desc=\"Cache 0 Calls\""
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "38"
+						},
+						{
+							"key": "Vary",
+							"value": "Cookie"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"non_field_errors\": [\n        \"invalid_token\"\n    ]\n}"
+				},
+				{
+					"name": "400-credential",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"token\": \"NmEyZGZkOWNlZDI1YmMwZl8xNzIzMzMzNDc0\",\n    \"cellphone\": \"+989335668353\",\n    \"password\": \"14\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/api/v1/accounts/auth/login/",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"accounts",
+								"auth",
+								"login",
+								""
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sat, 10 Aug 2024 23:46:06 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.12.4"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Allow",
+							"value": "POST, OPTIONS"
+						},
+						{
+							"key": "djdt-store-id",
+							"value": "ebdbee8e6a694b5e94f627da182dd232"
+						},
+						{
+							"key": "Server-Timing",
+							"value": "TimerPanel_utime;dur=1020.7490000000004;desc=\"User CPU time\", TimerPanel_stime;dur=33.7559999999999;desc=\"System CPU time\", TimerPanel_total;dur=1054.5050000000003;desc=\"Total CPU time\", TimerPanel_total_time;dur=1006.1708639987046;desc=\"Elapsed time\", SQLPanel_sql_time;dur=2.994939000927843;desc=\"SQL 1 queries\", CachePanel_total_time;dur=0;desc=\"Cache 0 Calls\""
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "43"
+						},
+						{
+							"key": "Vary",
+							"value": "Cookie"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"non_field_errors\": [\n        \"invalid_credential\"\n    ]\n}"
+				}
+			]
+		}
+	]
+}
