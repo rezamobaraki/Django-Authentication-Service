@@ -1,6 +1,31 @@
-## Django Boilerplate Project
+## Achareh Task -> Django Auth Service
 
-This is a boilerplate project for Django, designed to help you get started quickly with a standard setup. It includes configurations for Poetry, PostgreSQL, and various Django apps and middleware.
+This is a Django project designed to provide authentication services with features for registration, login, and security
+against suspicious requests. This project simulates a simple login/registration system similar to Achareh’s current
+process.
+
+### User Stories - UseCases
+
+- **User Registration:**
+    - Enter phone number.
+    - If the user is not registered:
+        - A one-time 6-digit code is generated and sent via SMS.
+        - User enters the verification code.
+        - If the code is correct, the user is prompted to provide personal details (first name, last name, and email)
+          and create a password.
+        - If the code is incorrect, the user is notified.
+
+- **User Login:**
+    - Enter phone number and password.
+    - If the user has registered before, they are authenticated upon correct password entry.
+    - If the login credentials are incorrect:
+        - After three failed attempts, either from the same IP or with the same username-password combination, the
+          user/IP is blocked for 1 hour.
+
+- **Security Measures:**
+    - **Login Process:** After three incorrect attempts, the user or IP is blocked for 1 hour.
+    - **Registration Process:** If three incorrect SMS verification codes are entered from the same IP or for the same
+      phone number, the user/IP is blocked for 1 hour.
 
 ### Prerequisites
 
@@ -22,7 +47,7 @@ This is a boilerplate project for Django, designed to help you get started quick
     ```
 
 3. **Set up environment variables:**
-    Create a `.env` file in the root directory and add the following variables:
+   Create a `.env` file in the root directory and add the following variables:
     ```env
     POSTGRES_NAME=<your-database-name>
     POSTGRES_USER=<your-database-user>
@@ -30,7 +55,7 @@ This is a boilerplate project for Django, designed to help you get started quick
     POSTGRES_HOST=localhost
     POSTGRES_PORT=5432
     ALLOWED_HOSTS=*
-    CSRF_TRUSTED_ORIGINS=
+    CSRF_TRUSTED_ORIGINS=<your-domain>
     ```
 
 4. **Apply database migrations:**
@@ -68,16 +93,16 @@ This project includes a `Makefile` for common tasks:
 - `make runserver`: Run the Django development server
 - `make migrate`: Apply database migrations
 - `make make-migration`: Create a migration
-- `make dump-data`: Dump data
+- `make dump-data`: Dump database data
 - `make create-superuser`: Create a superuser
-- `make db_shell`: Run the Django database shell
-- `make shell`: Run the Django shell
-- `make show-urls`: Show all URLs
+- `make db_shell`: Access the Django database shell
+- `make shell`: Access the Django shell
+- `make show-urls`: Display all project URLs
 - `make test`: Run tests
 - `make lint`: Run linters
 - `make collect-static`: Collect static files
-- `make make-messages`: Create messages
-- `make compile-messages`: Compile messages
+- `make make-messages`: Generate translation message files
+- `make compile-messages`: Compile translation message files
 
 ### Project Structure
 
