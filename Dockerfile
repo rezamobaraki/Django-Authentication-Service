@@ -1,17 +1,14 @@
-FROM ubuntu:latest
-LABEL authors="Reza Mobaraki ~ Rezoo"
-
 # Stage 1: Build stage
-
 FROM python:3.12-slim as builder
 
+LABEL authors="Reza Mobaraki ~ Rezoo"
+
 # Set environment variables
-ENV PYTHONDONTWRITEBYTECODE 1
-ENV PYTHONUNBUFFERED 1
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
 
 # Install necessary packages, including gettext
 RUN apt-get update -o Acquire::Check-Valid-Until=false && \
-    apt-get install -y gettext && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
@@ -26,6 +23,8 @@ COPY poetry.lock pyproject.toml /app/
 RUN poetry install --no-root
 
 COPY src/ ./
+
+ENV DJANGO_SETTINGS_MODULE=config.django.production
 
 # Expose port 8000
 EXPOSE 8000

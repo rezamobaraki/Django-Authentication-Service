@@ -1,14 +1,13 @@
 name: boilerplate
 version: '3.9'
 
-
 services:
   app:
-    container_name: boilerplate_app
-    image: boilerplate_app:latest
+    container_name: achareh_app
+    image: achareh:latest
     build:
       context: .
-      dockerfile: Dockerfile.local
+      dockerfile: Dockerfile
     command: >
       bash -c "python manage.py migrate
       && gunicorn --workers=3 --timeout=600 --bind=0.0.0.0:8000 config.wsgi:application"
@@ -18,14 +17,14 @@ services:
     env_file:
       - .compose/config.env
     networks:
-      - boilerplate
+      - app
     ports:
       - "8000:8000"
     restart: always
 
   celery:
-    container_name: boilerplate_celery
-    image: boilerplate_app:latest
+    container_name: achareh_celery
+    image: achareh:latest
     build:
       context: .
       dockerfile: Dockerfile.local
@@ -36,11 +35,11 @@ services:
     env_file:
       - .compose/config.env
     networks:
-      - boilerplate
+      - app
     restart: always
 
   redis:
-    container_name: boilerplate_redis
+    container_name: achareh_redis
     image: redis:7.2
     command: [ "redis-server", "--requirepass", "redis_password" ]
     networks:
@@ -52,14 +51,14 @@ services:
       - redis-data:/data
 
   postgres:
-    container_name: boilerplate_postgres
+    container_name: achareh_postgres
     image: postgres:16.2
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: boilerplate
+      POSTGRES_DB: achareh
     networks:
-      - boilerplate
+      - app
     ports:
       - "5432:5432"
     restart: always
@@ -68,7 +67,7 @@ services:
 
 
 networks:
-  boilerplate:
+  app:
     driver: bridge
 
 volumes:
