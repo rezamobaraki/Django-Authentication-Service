@@ -38,6 +38,8 @@ LOCAL_APPS = [
 THIRD_PARTY_APPS = [
     "rest_framework",
     "rest_framework_simplejwt",
+    "corsheaders",
+    "drf_yasg",
 ]
 
 INSTALLED_APPS = [
