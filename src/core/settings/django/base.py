@@ -149,7 +149,7 @@ REGISTER_TOKEN_TTL = env.int("REGISTER_TOKEN_TTL", default=3) * 60
 REGISTER_OTP_TTL = env.int("REGISTER_OTP_TTL", default=2) * 60
 LOGIN_ATTEMPT_LIMIT = env.int("LOGIN_ATTEMPT_LIMIT", default=3)
 REGISTRATION_ATTEMPT_LIMIT = env.int("REGISTRATION_ATTEMPT_LIMIT", default=3)
-BLOCK_DURATION = env.int("BLOCK_DURATION", default=60) * 60
+BLOCK_DURATION = env.int("BLOCK_DURATION", default=1) * 60
 
 from core.settings.third_parties.cors import *  # noqa
 from core.settings.third_parties.drf import *  # noqa
