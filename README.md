@@ -27,7 +27,21 @@ process.
     - **Registration Process:** If three incorrect SMS verification codes are entered from the same IP or for the same
       phone number, the user/IP is blocked for 1 hour.
 
-### Middleware Layer
+# Rate Limiting
+
+Personal notes on rate limiting: I handle two approach of rate limiting in this project. 
+1. Rate limiting throughout Actions (Login, Registration) which in there are too many unnecessary logics and codes.
+2. Rate limiting throughout hole project or service which is more efficient and clean. **[(I have implemented this one on another branch)](https://github.com/MrRezoo/Achareh-Task/tree/feature/refactor-rate-limiter)**
+
+``` text
+Besides the above notes,
+1. I have implemented rate limiting in the service layer.
+2. And I have implemented rate limiting in the middleware layer.
+```
+
+
+
+##### Middleware Layer
 
 Middleware is a good place to implement a rate limiter since it can intercept requests before they reach the application
 logic. This is beneficial because it ensures that requests exceeding the limit are blocked early in the request
@@ -35,13 +49,13 @@ lifecycle.
 However, for more specific logic, such as blocking based on incorrect password attempts, service-level rate limiting may
 be necessary.
 
-### Service Layer
+##### Service Layer
 
 Implement rate limiting in the authentication service where login and OTP requests are handled. This allows the rate
 limiter to work in tandem with the business logic, such as checking the number of failed attempts and blocking the user
 or IP if necessary.
 
-### Prerequisites
+##### Prerequisites
 
 - Python 3.8+
 - Poetry
