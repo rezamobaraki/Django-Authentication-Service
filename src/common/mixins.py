@@ -41,5 +41,5 @@ class RateLimitMixin:
             # Increment only if certain errors occur
             for error_key in INVALID_ERRORS.keys():
                 if error_key in exc.detail:
-                    self.handle_invalid_attempt(request, action_type)
+                    self.handle_invalid_attempt(request, self.action)
             raise exc
