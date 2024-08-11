@@ -27,19 +27,18 @@ process.
     - **Registration Process:** If three incorrect SMS verification codes are entered from the same IP or for the same
       phone number, the user/IP is blocked for 1 hour.
 
-# Rate Limiting
+## Rate Limiting
 
-Personal notes on rate limiting: I handle two approach of rate limiting in this project. 
-1. Rate limiting throughout Actions (Login, Registration) which in there are too many unnecessary logics and codes.
-2. Rate limiting throughout hole project or service which is more efficient and clean. **[(I have implemented this one on another branch)](https://github.com/MrRezoo/Achareh-Task/tree/feature/refactor-rate-limiter)**
+Personal notes on rate limiting: I handle two approach of rate limiting in this project.
+
+1. Rate limiting throughout hole project or service which is more efficient and clean.
+2. Rate limiting throughout Actions (Login, Registration) which in there are too many unnecessary logics and codes. [(I have implemented this one on another branch)](https://github.com/MrRezoo/Achareh-Task/tree/backup-main-different-rate-limiter-logic)
 
 ``` text
 Besides the above notes,
 1. I have implemented rate limiting in the service layer.
 2. And I have implemented rate limiting in the middleware layer.
 ```
-
-
 
 ##### Middleware Layer
 
