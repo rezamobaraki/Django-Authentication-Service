@@ -15,7 +15,7 @@ from common.viewsets import CreateModelWithFixStatusViewSet
 User = get_user_model()
 
 
-class AuthenticationViewSet(CreateModelWithFixStatusViewSet):
+class AuthenticationViewSet(RateLimitMixin, CreateModelWithFixStatusViewSet):
     authentication_classes = []
     permission_classes = []
     serializer_class = AuthenticationRequestSerializer

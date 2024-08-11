@@ -147,9 +147,8 @@ AUTH_USER_MODEL = 'accounts.User'
 LOGIN_TOKEN_TTL = env.int("LOGIN_TOKEN_TTL", default=2) * 60
 REGISTER_TOKEN_TTL = env.int("REGISTER_TOKEN_TTL", default=2) * 60
 REGISTER_OTP_TTL = env.int("REGISTER_OTP_TTL", default=2) * 60
-LOGIN_ATTEMPT_LIMIT = env.int("LOGIN_ATTEMPT_LIMIT", default=3)
-REGISTRATION_ATTEMPT_LIMIT = env.int("REGISTRATION_ATTEMPT_LIMIT", default=3)
-BLOCK_DURATION = env.int("BLOCK_DURATION", default=60) * 60
+RATE_LIMITER_ATTEMPT_LIMIT = env.int("RATE_LIMITER_ATTEMPT_LIMIT", default=3)
+RATE_LIMITER_BLOCK_DURATION = env.int("RATE_LIMITER_BLOCK_DURATION", default=60) * 60
 
 from core.settings.third_parties.cors import *  # noqa
 from core.settings.third_parties.drf import *  # noqa
