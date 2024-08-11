@@ -7,12 +7,8 @@ def verify_registration_otp(cellphone: str, input_otp: str) -> bool:
     return stored_otp == input_otp
 
 
-def get_cellphone_by_registration_token(input_token: str) -> bool:
-    return Redis.get(name=RedisKeyTemplates.format_register_token_key(token=input_token))
-
-
-def verify_registration_information_token(input_token: str):
-    name = RedisKeyTemplates.format_register_information_key(token=input_token)
+def verify_registration_token(input_token: str) -> bool:
+    name = RedisKeyTemplates.format_register_token_key(token=input_token)
     return Redis.hget(name=name, key='token') == input_token
 
 

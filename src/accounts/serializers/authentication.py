@@ -7,10 +7,8 @@ from accounts.services.commands.authentication import (
     complete_registration, generate_login_token, generate_registration_token, send_registration_otp,
     store_registration_information
 )
-from accounts.services.queries.authentication import (
-    get_cellphone_by_registration_token, verify_login_token, verify_registration_information_token,
-    verify_registration_otp
-)
+from accounts.services.queries.authentication import (verify_login_token, verify_registration_otp,
+                                                      verify_registration_token)
 from common.validators import cellphone_validator
 
 
@@ -53,16 +51,14 @@ class RegistrationInformationSerializer(serializers.Serializer):
     last_name = serializers.CharField(write_only=True, required=True, allow_blank=False)
     email = serializers.EmailField(write_only=True, required=True, allow_blank=True)
 
-    def validate(self, attrs):
-        cellphone = get_cellphone_by_registration_token(input_token=attrs["token"])
-        if not cellphone:
+    def validate_token(self, value):
+        if not verify_registration_token(input_token=value):
             raise serializers.ValidationError(_("invalid_token"), code="invalid_token")
-        attrs["cellphone"] = cellphone
-        return attrs
+        return value
 
     def create(self, validated_data):
         token = store_registration_information(
-            cellphone=validated_data["cellphone"], first_name=validated_data["first_name"],
+            token=validated_data["token"], first_name=validated_data["first_name"],
             last_name=validated_data["last_name"], email=validated_data.get("email"),
         )
         return {"token": token}
@@ -76,7 +72,7 @@ class RegistrationCompletionSerializer(serializers.Serializer):
     refresh = serializers.CharField(read_only=True)
 
     def validate_token(self, value):
-        if not verify_registration_information_token(input_token=value):
+        if not verify_registration_token(input_token=value):
             raise serializers.ValidationError(_("invalid_token"), code="invalid_token")
         return value
 

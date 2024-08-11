@@ -9,6 +9,7 @@ from accounts.serializers.authentication import (
     RegistrationInformationSerializer, RegistrationVerificationSerializer
 )
 from common.services.rate_limiter.mixin import RateLimitMixin
+from common.throttles import AuthenticationRateThrottle
 from common.viewsets import CreateModelWithFixStatusViewSet
 
 User = get_user_model()
@@ -19,6 +20,7 @@ class AuthenticationViewSet(CreateModelWithFixStatusViewSet):
     permission_classes = []
     serializer_class = AuthenticationRequestSerializer
     fix_status = status.HTTP_200_OK
+    throttle_classes = [AuthenticationRateThrottle]
 
 
 class RegistrationViewSet(RateLimitMixin, CreateModelWithFixStatusViewSet):
@@ -26,7 +28,6 @@ class RegistrationViewSet(RateLimitMixin, CreateModelWithFixStatusViewSet):
     permission_classes = []
     serializer_class = None
     fix_status = status.HTTP_200_OK
-    rate_limiter_action = None
 
     @action(detail=False, methods=['POST'], serializer_class=RegistrationVerificationSerializer)
     def verify(self, request, *args, **kwargs):
@@ -47,7 +48,6 @@ class LoginViewSet(RateLimitMixin, CreateModelWithFixStatusViewSet):
     permission_classes = []
     serializer_class = LoginSerializer
     fix_status = status.HTTP_200_OK
-    rate_limiter_action = None
 
     def create(self, request, *args, **kwargs):
         self.rate_limiter_action = 'login'

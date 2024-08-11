@@ -35,8 +35,9 @@ class RateLimitMixin:
                 raise Throttled(detail=ERROR_MESSAGES["blocked"])
 
     def create(self, request, *args, **kwargs):
-        if self.rate_limiter_action is None:
-            raise APIException("Rate limiter action is not defined")
+        # TODO : Fix this
+        # if not isinstance(self.rate_limiter_action, str):
+        #     raise APIException("Rate limiter action is not defined")
 
         if self.rate_limiter_action not in ActionType.values():
             return super().create(request, *args, **kwargs)

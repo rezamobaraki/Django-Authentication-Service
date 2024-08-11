@@ -142,7 +142,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"cellphone\":\"+989335668351\"\n}",
+							"raw": "{\n    \"cellphone\":\"+989335668351\" // you will recieve otp on your console \n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -243,7 +243,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"code\": \"639795\",\n    \"cellphone\": \"+989335668353\"\n}",
+					"raw": "{\n    \"code\": \"810892\",\n    \"cellphone\": \"+989335668353\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -354,6 +354,267 @@
 					],
 					"cookie": [],
 					"body": "{\n    \"token\": \"YTFjOGYwZDA1M2Q0MWFjZl8xNzIzMzMxOTcz\"\n}"
+				},
+				{
+					"name": "400-invalid_otp",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"code\": \"662891\",\n    \"cellphone\": \"+989335668350\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/api/v1/accounts/auth/register/verify/",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"accounts",
+								"auth",
+								"register",
+								"verify",
+								""
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sun, 11 Aug 2024 17:21:28 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.12.4"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Allow",
+							"value": "POST, OPTIONS"
+						},
+						{
+							"key": "djdt-store-id",
+							"value": "f7b9cb0132774a55942909fe2cf57751"
+						},
+						{
+							"key": "Server-Timing",
+							"value": "TimerPanel_utime;dur=55.948000000000775;desc=\"User CPU time\", TimerPanel_stime;dur=3.584999999999283;desc=\"System CPU time\", TimerPanel_total;dur=59.53300000000006;desc=\"Total CPU time\", TimerPanel_total_time;dur=67.51045199780492;desc=\"Elapsed time\", SQLPanel_sql_time;dur=0;desc=\"SQL 0 queries\", CachePanel_total_time;dur=0;desc=\"Cache 0 Calls\""
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "36"
+						},
+						{
+							"key": "Vary",
+							"value": "Cookie"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"non_field_errors\": [\n        \"invalid_otp\"\n    ]\n}"
+				},
+				{
+					"name": "429-Rate Limit",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"code\": \"662891\",\n    \"cellphone\": \"+989335668350\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/api/v1/accounts/auth/register/verify/",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"accounts",
+								"auth",
+								"register",
+								"verify",
+								""
+							]
+						}
+					},
+					"status": "Too Many Requests",
+					"code": 429,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sun, 11 Aug 2024 17:21:54 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.12.4"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Allow",
+							"value": "POST, OPTIONS"
+						},
+						{
+							"key": "djdt-store-id",
+							"value": "0968756b8b9143378dd2f51b227ced1f"
+						},
+						{
+							"key": "Server-Timing",
+							"value": "TimerPanel_utime;dur=54.84599999999773;desc=\"User CPU time\", TimerPanel_stime;dur=1.936000000000604;desc=\"System CPU time\", TimerPanel_total;dur=56.781999999998334;desc=\"Total CPU time\", TimerPanel_total_time;dur=59.72548800491495;desc=\"Elapsed time\", SQLPanel_sql_time;dur=0;desc=\"SQL 0 queries\", CachePanel_total_time;dur=0;desc=\"Cache 0 Calls\""
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "65"
+						},
+						{
+							"key": "Vary",
+							"value": "Cookie"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"detail\": \"You are now blocked due to too many failed attempts.\"\n}"
+				},
+				{
+					"name": "429-Rate Limit with time",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"code\": \"662891\",\n    \"cellphone\": \"+989335668350\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/api/v1/accounts/auth/register/verify/",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"accounts",
+								"auth",
+								"register",
+								"verify",
+								""
+							]
+						}
+					},
+					"status": "Too Many Requests",
+					"code": 429,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sun, 11 Aug 2024 17:22:22 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.12.4"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Allow",
+							"value": "POST, OPTIONS"
+						},
+						{
+							"key": "djdt-store-id",
+							"value": "8ff0d43408c84891bb0c62424c79c369"
+						},
+						{
+							"key": "Server-Timing",
+							"value": "TimerPanel_utime;dur=52.57699999999943;desc=\"User CPU time\", TimerPanel_stime;dur=2.4310000000014043;desc=\"System CPU time\", TimerPanel_total;dur=55.008000000000834;desc=\"Total CPU time\", TimerPanel_total_time;dur=55.78624899499118;desc=\"Elapsed time\", SQLPanel_sql_time;dur=0;desc=\"SQL 0 queries\", CachePanel_total_time;dur=0;desc=\"Cache 0 Calls\""
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "74"
+						},
+						{
+							"key": "Vary",
+							"value": "Cookie"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"detail\": \"Register attempts limit exceeded. Try again after 32 seconds.\"\n}"
 				}
 			]
 		},
@@ -378,7 +639,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"token\": \"YTFjOGYwZDA1M2Q0MWFjZl8xNzIzMzMxOTcz\",\n    \"cellphone\": \"+989335668353\",\n    \"first_name\":\"rezoo\",\n    \"last_name\":\"moba\",\n    \"email\":\"rezoo@gmail.com\"\n}",
+					"raw": "{\n    \"token\": \"ZjdhNzRiNThkOWM5YTNjOF8xNzIzMzk4NTQ3\",\n    \"first_name\":\"rezoo\",\n    \"last_name\":\"moba\",\n    \"email\":\"rezoo@gmail.com\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -515,7 +776,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"token\": \"YWZlZWI5NThlZTdmZDk4YV8xNzIzMzMyMDU1\",\n    \"password\": \"1234\"\n}",
+					"raw": "{\n    \"token\": \"ZjdhNzRiNThkOWM5YTNjOF8xNzIzMzk4NTQ3\",\n    \"password\": \"1234\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -539,7 +800,95 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "200",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"token\": \"MjUzMzg5MWY0MTM4MDY5Ml8xNzIzMzk1OTgx\",\n    \"password\": \"1234\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/api/v1/accounts/auth/register/complete/",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"accounts",
+								"auth",
+								"register",
+								"complete",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sun, 11 Aug 2024 17:09:34 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.12.4"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Allow",
+							"value": "POST, OPTIONS"
+						},
+						{
+							"key": "djdt-store-id",
+							"value": "e374db3853774111aad5e48bf4396c50"
+						},
+						{
+							"key": "Server-Timing",
+							"value": "TimerPanel_utime;dur=5154.973;desc=\"User CPU time\", TimerPanel_stime;dur=1359.937;desc=\"System CPU time\", TimerPanel_total;dur=6514.91;desc=\"Total CPU time\", TimerPanel_total_time;dur=40746.667752002395;desc=\"Elapsed time\", SQLPanel_sql_time;dur=8.406427998124855;desc=\"SQL 2 queries\", CachePanel_total_time;dur=0;desc=\"Cache 0 Calls\""
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "483"
+						},
+						{
+							"key": "Vary",
+							"value": "Cookie"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"access\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIzNjEyMTM4LCJpYXQiOjE3MjMzOTYxMzgsImp0aSI6IjRmNzcyYmFhZWZjNjQyMDY4OTBkN2I2N2JjMzA1ZGZmIiwidXNlcl9pZCI6Mn0.nvQe6VNcWD6CfuG2Nic6yAKwrZk5-wXHC39ZdBPSFcc\",\n    \"refresh\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTcyNDAwMDkzOCwiaWF0IjoxNzIzMzk2MTM4LCJqdGkiOiI1N2NmMDljNjMxZDk0N2IyODIxYTNhMjY4ZmI0NjUxZCIsInVzZXJfaWQiOjJ9.Gx6sYV7EC_qVHxUmTUCQcKtlmRMonK83fW-G_yxYzms\"\n}"
+				}
+			]
 		},
 		{
 			"name": "Login",
@@ -560,7 +909,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"token\": \"NmEyZGZkOWNlZDI1YmMwZl8xNzIzMzMzNDc0\",\n    \"cellphone\": \"+989335668353\",\n    \"password\": \"1234\"\n}",
+					"raw": "{\n    \"token\": \"ZTA1MmUzZGFlNDExNDQ1MV8xNzIzMzk4NzEw\",\n    \"cellphone\": \"+989335668331\",\n    \"password\": \"1233\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -841,6 +1190,92 @@
 					],
 					"cookie": [],
 					"body": "{\n    \"non_field_errors\": [\n        \"invalid_credential\"\n    ]\n}"
+				},
+				{
+					"name": "429-rate limit",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"token\": \"MzU2ZmFmNzZjMTM1MTc3Yl8xNzIzMzk2NTc4\",\n    \"cellphone\": \"+989335668351\",\n    \"password\": \"1233\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/api/v1/accounts/auth/login/",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"accounts",
+								"auth",
+								"login",
+								""
+							]
+						}
+					},
+					"status": "Too Many Requests",
+					"code": 429,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sun, 11 Aug 2024 17:17:53 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.12.4"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Allow",
+							"value": "POST, OPTIONS"
+						},
+						{
+							"key": "djdt-store-id",
+							"value": "96fef09cc1c545bca8645797666e1d73"
+						},
+						{
+							"key": "Server-Timing",
+							"value": "TimerPanel_utime;dur=1104.9360000000022;desc=\"User CPU time\", TimerPanel_stime;dur=67.54199999999955;desc=\"System CPU time\", TimerPanel_total;dur=1172.4780000000017;desc=\"Total CPU time\", TimerPanel_total_time;dur=1190.4293390034582;desc=\"Elapsed time\", SQLPanel_sql_time;dur=6.155635997856734;desc=\"SQL 1 queries\", CachePanel_total_time;dur=0;desc=\"Cache 0 Calls\""
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "65"
+						},
+						{
+							"key": "Vary",
+							"value": "Cookie"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"detail\": \"You are now blocked due to too many failed attempts.\"\n}"
 				}
 			]
 		}

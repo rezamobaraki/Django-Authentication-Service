@@ -20,29 +20,28 @@ def send_registration_otp(cellphone: str):
 
 def generate_registration_token(cellphone: str) -> str:
     token = generate_token()
-    Redis.set(
-        name=RedisKeyTemplates.format_register_token_key(token=token),
-        value=cellphone,
-        ex=settings.REGISTER_TOKEN_TTL,
-    )
-    return token
-
-
-def store_registration_information(first_name, last_name, cellphone, email):
-    token = generate_token()
-    data = {"first_name": first_name, "last_name": last_name, "email": email, "cellphone": cellphone, "token": token}
-    redis_template = RedisKeyTemplates.format_register_information_key(token=token)
+    data = {"cellphone": cellphone, "token": token}
+    redis_template = RedisKeyTemplates.format_register_token_key(token=token)
+    ttl = settings.REGISTER_TOKEN_TTL
     Redis.hset(
         name=redis_template,
         mapping=data,
     )
-    ttl = settings.REGISTER_TOKEN_TTL
     Redis.expire(name=redis_template, time=ttl)
     return token
 
 
+def store_registration_information(*, token, first_name, last_name, email):
+    redis_template = RedisKeyTemplates.format_register_token_key(token=token)
+    existing_data = Redis.hgetall(redis_template)
+    information = {"first_name": first_name, "last_name": last_name, "email": email}
+    existing_data.update(information)
+    Redis.hset(name=redis_template, mapping=existing_data)
+    return token
+
+
 def complete_registration(token: str, password: str):
-    redis_template = RedisKeyTemplates.format_register_information_key(token=token)
+    redis_template = RedisKeyTemplates.format_register_token_key(token=token)
     data = Redis.hgetall(name=redis_template)
     user, _ = User.objects.get_or_create(
         cellphone=data["cellphone"], first_name=data["first_name"], last_name=data["last_name"], email=data["email"]
