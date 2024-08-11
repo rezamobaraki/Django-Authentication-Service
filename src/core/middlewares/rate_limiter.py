@@ -45,7 +45,6 @@ class RateLimiterMiddleware(MiddlewareMixin):
             return self._create_error_response()
 
         attempts = self._increment_attempts(key)
-
         if attempts > self.limits[key_type]:
             self._block(key)
             return self._create_error_response()
@@ -58,19 +57,31 @@ class RateLimiterMiddleware(MiddlewareMixin):
         return JsonResponse({"error": message}, status=status.HTTP_429_TOO_MANY_REQUESTS)
 
     def process_view(self, request, view_func, view_args, view_kwargs):
-        body = json.loads(request.body)
         if 'login' in request.path:
-            identifiers = [request.META.get('REMOTE_ADDR'), body.get('cellphone')]
-            key_type = "login"
-        elif 'register' in request.path:
-            identifiers = [request.META.get('REMOTE_ADDR'), body.get('cellphone')]
-            key_type = "register"
-        else:
-            return None
+            cellphone = json.loads(request.body).get('cellphone')
+            password = json.loads(request.body).get('password')
+            ip = request.META.get('REMOTE_ADDR')
 
-        for identifier in identifiers:
-            if identifier:
-                response = self._handle_rate_limiting(key_type, identifier)
+            if cellphone and password:
+                response = self._handle_rate_limiting('login', f'{cellphone}:{password}')
+                if response:
+                    return response
+
+                response = self._handle_rate_limiting('login', ip)
+                if response:
+                    return response
+
+        elif 'register' in request.path:
+            cellphone = json.loads(request.body).get('cellphone')
+            code = json.loads(request.body).get('code')
+            ip = request.META.get('REMOTE_ADDR')
+
+            if cellphone and code:
+                response = self._handle_rate_limiting('register', f'{ip}:{cellphone}')
+                if response:
+                    return response
+
+                response = self._handle_rate_limiting('register', cellphone)
                 if response:
                     return response
 
