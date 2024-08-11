@@ -18,12 +18,11 @@ class RateLimiter:
 
     def increment_attempts(self, identifier: str) -> bool:
         attempts_key = RedisKeyTemplates.format_attempts_key(identifier)
-        block_key = self._get_user_block_key(identifier)
-
         attempts = self.redis.incr(attempts_key)
         self.redis.expire(attempts_key, RATE_LIMITER_BLOCK_DURATION)
 
         if attempts > RATE_LIMITER_ATTEMPT_LIMIT:
+            block_key = self._get_user_block_key(identifier)
             self.redis.set(block_key, 1, ex=RATE_LIMITER_BLOCK_DURATION)
             return True
 
