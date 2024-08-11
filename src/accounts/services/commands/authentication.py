@@ -3,6 +3,7 @@ import logging
 from django.conf import settings
 
 from accounts.models import User
+from accounts.tasks import send_sms_task
 from common.token_generator import generate_otp, generate_token
 from core.settings.third_parties.redis import Redis
 from core.settings.third_parties.redis_templates import RedisTemplates
@@ -17,9 +18,8 @@ def send_registration_otp(cellphone: str):
         value=str(otp),
         ex=settings.REGISTER_OTP_TTL,
     )
-    #  send_sms(cellphone=cellphone, otp=otp)
-    if settings.DEBUG:
-        logging.info(f"Generated OTP for {cellphone}: {otp}")
+    # SMS sending
+    send_sms_task.delay(cellphone=cellphone, message=f"Your OTP is {otp}")
 
 
 def generate_registration_token(cellphone: str) -> str:
