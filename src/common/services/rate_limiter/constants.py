@@ -20,12 +20,6 @@ ERROR_MESSAGES = {
     ActionType.REGISTER.value: _("Register attempts limit exceeded. Try again after {wait_time} seconds."),
     ActionType.BLOCKED.value: _("You are now blocked due to too many failed attempts."),
 }
-
-INVALID_ERRORS = {
-    "invalid_otp": "OTP is incorrect.",
-    "invalid_credential": "Invalid login credentials.",
-}
-
 ATTEMPT_LIMITS = {
     ActionType.LOGIN.value: LOGIN_ATTEMPT_LIMIT,
     ActionType.REGISTER.value: REGISTRATION_ATTEMPT_LIMIT,

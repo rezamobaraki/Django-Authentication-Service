@@ -1,7 +1,7 @@
 from rest_framework.exceptions import APIException, Throttled
 
-from accounts.services.rate_limiter import RateLimiter
-from .constants import ActionType, ERROR_MESSAGES
+from common.services.rate_limiter.constants import ActionType, ERROR_MESSAGES
+from common.services.rate_limiter.rate_limiter import RateLimiter
 
 
 class RateLimitMixin:

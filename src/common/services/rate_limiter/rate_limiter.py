@@ -1,4 +1,4 @@
-from common.constants import ActionType, ATTEMPT_LIMITS
+from common.services.rate_limiter.constants import ATTEMPT_LIMITS
 from core.settings.django.base import BLOCK_DURATION
 from core.settings.third_parties.redis import Redis
 from core.settings.third_parties.redis_templates import RedisKeyTemplates

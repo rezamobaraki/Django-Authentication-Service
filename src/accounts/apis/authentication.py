@@ -8,7 +8,7 @@ from accounts.serializers.authentication import (
     AuthenticationRequestSerializer, LoginSerializer, RegistrationCompletionSerializer,
     RegistrationInformationSerializer, RegistrationVerificationSerializer
 )
-from common.mixins import RateLimitMixin
+from common.services.rate_limiter.mixin import RateLimitMixin
 from common.viewsets import CreateModelWithFixStatusViewSet
 
 User = get_user_model()
