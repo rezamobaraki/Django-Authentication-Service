@@ -135,16 +135,83 @@ This project includes a `Makefile` for common tasks:
 ### Project Structure
 
 ```
-├── src/
-│   ├── core/
-│   │   ├── settings/
-│   │   │   ├── django/
-│   │   │   │   ├── base.py
-│   │   │   │   ├── local.py
-│   │   │   │   ├── production.py
-│   │   ├── wsgi.py
-│   │   ├── urls.py
-│   ├── manage.py
+├── accounts
+│   ├── __init__.py
+│   ├── admin.py
+│   ├── apis
+│   │   ├── __init__.py
+│   │   └── authentication.py
+│   ├── apps.py
+│   ├── migrations
+│   │   ├── 0001_initial.py
+│   │   └── __init__.py
+│   ├── models.py
+│   ├── serializers
+│   │   ├── __init__.py
+│   │   └── authentication.py
+│   ├── services
+│   │   ├── __init__.py
+│   │   ├── commands
+│   │   │   ├── __init__.py
+│   │   │   └── authentication.py
+│   │   └── queries
+│   │       ├── __init__.py
+│   │       └── authentication.py
+│   ├── tasks.py
+│   ├── tests
+│   │   ├── __init__.py
+│   │   └── authentication_apis_test.py
+│   └── urls
+│       ├── __init__.py
+│       └── authentication.py
+├── apis
+│   ├── __init__.py
+│   ├── accounts.py
+│   └── urls.py
+├── common
+│   ├── __init__.py
+│   ├── apps.py
+│   ├── models.py
+│   ├── services
+│   │   ├── __init__.py
+│   │   └── rate_limiter
+│   │       ├── __init__.py
+│   │       ├── mixin.py
+│   │       └── rate_limiter.py
+│   ├── swagger.py
+│   ├── throttles.py
+│   ├── token_generator.py
+│   ├── validators.py
+│   ├── views.py
+│   └── viewsets.py
+├── core
+│   ├── __init__.py
+│   ├── asgi.py
+│   ├── celery.py
+│   ├── env.py
+│   ├── middlewares
+│   │   ├── __init__.py
+│   │   └── rate_limiter.py
+│   ├── settings
+│   │   ├── __init__.py
+│   │   ├── django
+│   │   │   ├── __init__.py
+│   │   │   ├── base.py
+│   │   │   ├── local.py
+│   │   │   ├── production.py
+│   │   │   └── test.py
+│   │   └── third_parties
+│   │       ├── __init__.py
+│   │       ├── caches.py
+│   │       ├── cors.py
+│   │       ├── drf.py
+│   │       ├── jwt.py
+│   │       ├── redis.py
+│   │       ├── redis_templates.py
+│   │       └── swagger.py
+│   ├── urls.py
+│   └── wsgi.py
+├── manage.py
 ├── pyproject.toml
 ├── Makefile
 ├── .env
