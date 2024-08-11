@@ -3,7 +3,6 @@
 from django.contrib.auth import get_user_model
 from rest_framework import status
 from rest_framework.decorators import action
-from rest_framework.viewsets import GenericViewSet
 
 from accounts.serializers.authentication import (
     AuthenticationRequestSerializer, LoginSerializer, RegistrationCompletionSerializer,
@@ -26,15 +25,6 @@ class RegistrationViewSet(CreateModelWithFixStatusViewSet):
     permission_classes = []
     serializer_class = None
     fix_status = status.HTTP_200_OK
-
-    def get_serializer_class(self):
-        if self.action == 'verify_registration':
-            return RegistrationVerificationSerializer
-        if self.action == 'submit_registration_information':
-            return RegistrationInformationSerializer
-        if self.action == 'complete_registration':
-            return RegistrationCompletionSerializer
-        return super().get_serializer_class()
 
     @action(detail=False, methods=['POST'], serializer_class=RegistrationVerificationSerializer)
     def verify(self, request, *args, **kwargs):
