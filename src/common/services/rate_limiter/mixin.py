@@ -1,6 +1,6 @@
+from django.utils.translation import gettext_lazy as _
 from rest_framework.exceptions import Throttled
 
-from common.services.rate_limiter.constants import ERROR_MESSAGES
 from common.services.rate_limiter.rate_limiter import RateLimiter
 
 
@@ -18,7 +18,7 @@ class RateLimitMixin:
         for identifier_value in identifiers.values():
             is_blocked, wait_time = rate_limiter.is_user_blocked(identifier_value)
             if is_blocked:
-                raise Throttled(detail=ERROR_MESSAGES["blocked"].format(wait_time=wait_time))
+                raise Throttled(detail=_("You are now blocked due to too many failed attempts."), wait=wait_time)
 
     def handle_invalid_attempt(self, request):
         identifiers = {
@@ -30,7 +30,7 @@ class RateLimitMixin:
 
         for identifier_value in identifiers.values():
             if rate_limiter.increment_attempts(identifier_value):
-                raise Throttled(detail=ERROR_MESSAGES["blocked"])
+                raise Throttled(detail=_("You are now blocked due to too many failed attempts."))
 
     def create(self, request, *args, **kwargs):
         self.check_user_block(request)
