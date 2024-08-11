@@ -27,6 +27,20 @@ process.
     - **Registration Process:** If three incorrect SMS verification codes are entered from the same IP or for the same
       phone number, the user/IP is blocked for 1 hour.
 
+### Middleware Layer
+
+Middleware is a good place to implement a rate limiter since it can intercept requests before they reach the application
+logic. This is beneficial because it ensures that requests exceeding the limit are blocked early in the request
+lifecycle.
+However, for more specific logic, such as blocking based on incorrect password attempts, service-level rate limiting may
+be necessary.
+
+### Service Layer
+
+Implement rate limiting in the authentication service where login and OTP requests are handled. This allows the rate
+limiter to work in tandem with the business logic, such as checking the number of failed attempts and blocking the user
+or IP if necessary.
+
 ### Prerequisites
 
 - Python 3.8+

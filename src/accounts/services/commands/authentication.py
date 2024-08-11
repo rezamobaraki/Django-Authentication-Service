@@ -60,25 +60,3 @@ def generate_login_token(cellphone: str) -> str:
         ex=settings.LOGIN_TOKEN_TTL,
     )
     return token
-
-
-
-def increment_login_failures(*, cellphone: str, ip_address: str):
-    user_key = f"login:fail:user:{cellphone}"
-    ip_key = f"login:fail:ip:{ip_address}"
-
-    Redis.incr(user_key)
-    Redis.expire(user_key, BLOCK_TIME)
-
-    Redis.incr(ip_key)
-    Redis.expire(ip_key, BLOCK_TIME)
-
-    if int(r.get(user_key) or 0) >= 3:
-        r.setex(f"block:user:{cellphone}", BLOCK_TIME, "1")
-
-    if int(r.get(ip_key) or 0) >= 3:
-        r.setex(f"block:ip:{ip_address}", BLOCK_TIME, "1")
-
-def clear_login_failures(*, cellphone: str, ip_address: str):
-    r.delete(f"login:fail:user:{cellphone}")
-    r.delete(f"login:fail:ip:{ip_address}")
