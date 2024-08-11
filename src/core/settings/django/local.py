@@ -11,9 +11,10 @@ MIDDLEWARE += [  # noqa
 
 INTERNAL_IPS = ["127.0.0.1", "localhost"]
 
-DEBUG_TOOLBAR_CONFIG = {
-    "SHOW_TOOLBAR_CALLBACK": lambda _: True,
-}
+# DEBUG_TOOLBAR_CONFIG = {
+#     "SHOW_TOOLBAR_CALLBACK": lambda _: True,
+# }
+
 
 CELERY_TASK_ALWAYS_EAGER = True
 CELERY_ALWAYS_EAGER = True

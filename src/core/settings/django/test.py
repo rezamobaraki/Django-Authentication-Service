@@ -12,3 +12,7 @@ DATABASES = {
         "PORT": env.str("POSTGRES_TEST_PORT", 5432),
     }
 }
+
+DEBUG_TOOLBAR_CONFIG = {
+    'IS_RUNNING_TESTS': False
+}
