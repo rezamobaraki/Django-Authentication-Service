@@ -1,11 +1,12 @@
-from django.urls import path
+from rest_framework.routers import SimpleRouter
 
-from accounts.apis.authentication import AuthViewSet, LoginViewSet, RegisterViewSet
+from accounts.apis.authentication import AuthenticationViewSet, LoginViewSet, RegistrationViewSet
 
-urlpatterns = [
-    path("", AuthViewSet.as_view({'post': 'create'}), name="auth"),
-    path("register/verify/", RegisterViewSet.as_view({'post': 'verify'}), name="register"),
-    path("register/information/", RegisterViewSet.as_view({'post': 'information'}), name="register-information"),
-    path("register/complete/", RegisterViewSet.as_view({'post': 'complete'}), name="register-complete"),
-    path("login/", LoginViewSet.as_view({'post': 'create'}), name="login"),
-]
+app_name = 'authentication'
+router = SimpleRouter()
+
+router.register(r'', AuthenticationViewSet, basename='authentication')
+router.register(r'register', RegistrationViewSet, basename='registration')
+router.register(r'login', LoginViewSet, basename='login')
+
+urlpatterns = router.urls

@@ -10,7 +10,7 @@ from core.settings.third_parties.redis_templates import RedisTemplates
 logging.basicConfig(level=logging.INFO)
 
 
-def authentication_register_send_otp(*, cellphone: str):
+def send_registration_otp(cellphone: str):
     otp = generate_otp()
     Redis.set(
         name=RedisTemplates.auth_register_otp.format(cellphone=cellphone),
@@ -22,7 +22,7 @@ def authentication_register_send_otp(*, cellphone: str):
         logging.info(f"Generated OTP for {cellphone}: {otp}")
 
 
-def authentication_register_token(*, cellphone: str) -> str:
+def generate_registration_token(cellphone: str) -> str:
     token = generate_token()
     Redis.set(
         name=RedisTemplates.format_auth_register_token(token=token),
@@ -32,7 +32,7 @@ def authentication_register_token(*, cellphone: str) -> str:
     return token
 
 
-def authentication_register_information(*, first_name, last_name, cellphone, email):
+def store_registration_information(first_name, last_name, cellphone, email):
     token = generate_token()
     data = {"first_name": first_name, "last_name": last_name, "email": email, "cellphone": cellphone, "token": token}
     redis_template = RedisTemplates.format_auth_register_information(token=token)
@@ -45,7 +45,7 @@ def authentication_register_information(*, first_name, last_name, cellphone, ema
     return token
 
 
-def authentication_register_complete(*, token: str, password: str):
+def complete_registration(token: str, password: str):
     redis_template = RedisTemplates.format_auth_register_information(token=token)
     data = Redis.hgetall(name=redis_template)
     user, _ = User.objects.get_or_create(
@@ -56,7 +56,7 @@ def authentication_register_complete(*, token: str, password: str):
     return user
 
 
-def authentication_login_token(*, cellphone: str) -> str:
+def generate_login_token(cellphone: str) -> str:
     token = generate_token()
     Redis.set(
         name=RedisTemplates.format_auth_login_token(cellphone=cellphone),
