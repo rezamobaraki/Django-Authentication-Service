@@ -7,16 +7,16 @@ from common.validators import cellphone_validator
 
 
 class UserManager(BaseUserManager):
-    def create_user(self, phone, password=None):
-        if not phone:
+    def create_user(self, cellphone, password=None):
+        if not cellphone:
             raise ValueError("Users must have a phone number")
-        user = self.model(phone=phone)
+        user = self.model(cellphone=cellphone)
         user.set_password(password)
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, phone, password=None):
-        user = self.create_user(phone, password)
+    def create_superuser(self, cellphone, password=None):
+        user = self.create_user(cellphone, password)
         user.is_admin = True
         user.save(using=self._db)
         return user
