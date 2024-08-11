@@ -36,3 +36,13 @@ class RateLimitMixin:
     def create(self, request, *args, **kwargs):
         self.check_user_block(request)
         return super().create(request, *args, **kwargs)
+
+        # TODO: Check if its good practice to handle here or in serializer
+        # try:
+        #     response = super().create(request, *args, **kwargs)
+        # except ValidationError as e:
+        #     error_codes = set(e.get_codes())
+        #     if error_codes.intersection(RATE_LIMITED_ERROR_CODES):
+        #         self.handle_invalid_attempt(request)
+        #     raise
+        # return response
