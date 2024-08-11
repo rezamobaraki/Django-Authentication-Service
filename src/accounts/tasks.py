@@ -2,6 +2,8 @@ import logging
 
 from celery import shared_task
 
+logging.basicConfig(level=logging.INFO)
+
 
 @shared_task
 def send_sms_task(*, cellphone: str, message: str):

@@ -8,6 +8,7 @@ from accounts.serializers.authentication import (
     AuthenticationRequestSerializer, LoginSerializer, RegistrationCompletionSerializer,
     RegistrationInformationSerializer, RegistrationVerificationSerializer
 )
+from common.mixins import RateLimitMixin
 from common.viewsets import CreateModelWithFixStatusViewSet
 
 User = get_user_model()
@@ -20,11 +21,12 @@ class AuthenticationViewSet(CreateModelWithFixStatusViewSet):
     fix_status = status.HTTP_200_OK
 
 
-class RegistrationViewSet(CreateModelWithFixStatusViewSet):
+class RegistrationViewSet(RateLimitMixin, CreateModelWithFixStatusViewSet):
     authentication_classes = []
     permission_classes = []
     serializer_class = None
     fix_status = status.HTTP_200_OK
+    rate_limiter_action = 'verify'
 
     @action(detail=False, methods=['POST'], serializer_class=RegistrationVerificationSerializer)
     def verify(self, request, *args, **kwargs):
@@ -39,8 +41,9 @@ class RegistrationViewSet(CreateModelWithFixStatusViewSet):
         return super().create(request, args, kwargs)
 
 
-class LoginViewSet(CreateModelWithFixStatusViewSet):
+class LoginViewSet(RateLimitMixin, CreateModelWithFixStatusViewSet):
     authentication_classes = []
     permission_classes = []
     serializer_class = LoginSerializer
     fix_status = status.HTTP_200_OK
+    rate_limiter_action = 'login'

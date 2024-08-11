@@ -10,7 +10,7 @@ from core.settings.third_parties.redis_templates import RedisKeyTemplates
 def send_registration_otp(cellphone: str):
     otp = generate_otp()
     Redis.set(
-        name=RedisKeyTemplates.auth_register_otp.format(cellphone=cellphone),
+        name=RedisKeyTemplates.format_register_otp_key(cellphone=cellphone),
         value=str(otp),
         ex=settings.REGISTER_OTP_TTL,
     )

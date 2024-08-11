@@ -54,7 +54,7 @@ INSTALLED_APPS = [
 ]
 
 CUSTOM_MIDDLEWARE = [
-    "core.middlewares.rate_limiter.RateLimiterMiddleware",
+    # "core.middlewares.rate_limiter.RateLimiterMiddleware",
 ]
 
 MIDDLEWARE = [

@@ -9,7 +9,7 @@ class RedisKeyTemplates:
     AUTH_REGISTER_INFORMATION: str = "auth:register:information:{token}"
     AUTH_LOGIN_ATTEMPTS: str = "auth:login:attempts:{identifier}"
     AUTH_REGISTER_ATTEMPTS: str = "auth:register:attempts:{identifier}"
-    RATE_LIMITER: str = "rate_limiter:{key}"
+    RATE_LIMITER: str = "rate_limiter:{key}:block"
 
     @classmethod
     def format_register_otp_key(cls, cellphone: str) -> str:
