@@ -1,5 +1,3 @@
-import logging
-
 from django.conf import settings
 
 from accounts.models import User
@@ -7,8 +5,6 @@ from accounts.tasks import send_sms_task
 from common.token_generator import generate_otp, generate_token
 from core.settings.third_parties.redis import Redis
 from core.settings.third_parties.redis_templates import RedisTemplates
-
-logging.basicConfig(level=logging.INFO)
 
 
 def send_registration_otp(cellphone: str):
