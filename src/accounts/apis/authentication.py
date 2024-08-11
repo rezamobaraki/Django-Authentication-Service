@@ -26,10 +26,11 @@ class RegistrationViewSet(RateLimitMixin, CreateModelWithFixStatusViewSet):
     permission_classes = []
     serializer_class = None
     fix_status = status.HTTP_200_OK
-    rate_limiter_action = 'verify'
+    rate_limiter_action = None
 
     @action(detail=False, methods=['POST'], serializer_class=RegistrationVerificationSerializer)
     def verify(self, request, *args, **kwargs):
+        self.rate_limiter_action = 'register'
         return super().create(request, args, kwargs)
 
     @action(detail=False, methods=['POST'], serializer_class=RegistrationInformationSerializer)
@@ -46,4 +47,8 @@ class LoginViewSet(RateLimitMixin, CreateModelWithFixStatusViewSet):
     permission_classes = []
     serializer_class = LoginSerializer
     fix_status = status.HTTP_200_OK
-    rate_limiter_action = 'login'
+    rate_limiter_action = None
+
+    def create(self, request, *args, **kwargs):
+        self.rate_limiter_action = 'login'
+        return super().create(request, args, kwargs)

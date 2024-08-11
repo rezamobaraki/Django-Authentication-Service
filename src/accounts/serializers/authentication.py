@@ -37,6 +37,7 @@ class RegistrationVerificationSerializer(serializers.Serializer):
     def validate(self, attrs):
         code_is_valid = verify_registration_otp(cellphone=attrs["cellphone"], input_otp=attrs["code"])
         if not code_is_valid:
+            self.context['view'].handle_invalid_attempt(self.context['request'])
             raise serializers.ValidationError(_("invalid_otp"), code="invalid_otp")
 
         return attrs
@@ -103,6 +104,7 @@ class LoginSerializer(serializers.Serializer):
             raise serializers.ValidationError(_("invalid_token"), code="invalid_token")
 
         if not user or not user.check_password(raw_password=attrs["password"]):
+            self.context['view'].handle_invalid_attempt(self.context['request'])
             raise serializers.ValidationError(_("invalid_credential"), code="invalid_credential")
 
         attrs["user"] = user

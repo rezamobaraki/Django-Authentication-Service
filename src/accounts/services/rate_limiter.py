@@ -8,20 +8,20 @@ class RateLimiter:
     def __init__(self):
         self.redis = Redis
 
-    def _get_key(self, action_type: ActionType, identifier: str) -> str:
-        return getattr(RedisKeyTemplates, f"format_{action_type.value}_attempts_key")(identifier)
+    def _get_key(self, action_type: str, identifier: str) -> str:
+        return getattr(RedisKeyTemplates, f"format_{action_type}_attempts_key")(identifier)
 
     def _get_block_key(self, action_key: str) -> str:
         return RedisKeyTemplates.format_rate_limiter_key(key=action_key)
 
-    def is_blocked(self, action_type: ActionType, identifier: str) -> (bool, int):
+    def is_blocked(self, action_type: str, identifier: str) -> (bool, int):
         action_key = self._get_key(action_type, identifier)
         block_key = self._get_block_key(action_key)
         ttl = self.redis.ttl(block_key)
         is_blocked = ttl > 0
         return is_blocked, ttl
 
-    def increment_attempts(self, action_type: ActionType, identifier: str) -> bool:
+    def increment_attempts(self, action_type: str, identifier: str) -> bool:
         action_key = self._get_key(action_type, identifier)
         block_key = self._get_block_key(action_key)
 

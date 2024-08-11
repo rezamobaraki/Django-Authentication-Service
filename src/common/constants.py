@@ -8,13 +8,17 @@ from core.settings.django.base import LOGIN_ATTEMPT_LIMIT, REGISTRATION_ATTEMPT_
 class ActionType(Enum):
     LOGIN = "login"
     REGISTER = "register"
-    BLOCK = "block"
+    BLOCKED = "blocked"
+
+    @classmethod
+    def values(cls):
+        return [action.value for action in cls]
 
 
 ERROR_MESSAGES = {
-    ActionType.LOGIN: _("Login attempts limit exceeded. Try again after {wait_time} seconds."),
-    ActionType.REGISTER: _("Registration attempts limit exceeded. Try again after {wait_time} seconds."),
-    ActionType.BLOCK: _("You are now blocked due to too many failed attempts."),
+    ActionType.LOGIN.value: _("Login attempts limit exceeded. Try again after {wait_time} seconds."),
+    ActionType.REGISTER.value: _("Register attempts limit exceeded. Try again after {wait_time} seconds."),
+    ActionType.BLOCKED.value: _("You are now blocked due to too many failed attempts."),
 }
 
 INVALID_ERRORS = {
@@ -23,6 +27,6 @@ INVALID_ERRORS = {
 }
 
 ATTEMPT_LIMITS = {
-    ActionType.LOGIN: LOGIN_ATTEMPT_LIMIT,
-    ActionType.REGISTER: REGISTRATION_ATTEMPT_LIMIT,
+    ActionType.LOGIN.value: LOGIN_ATTEMPT_LIMIT,
+    ActionType.REGISTER.value: REGISTRATION_ATTEMPT_LIMIT,
 }

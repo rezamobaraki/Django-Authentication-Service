@@ -1,13 +1,14 @@
-from rest_framework.exceptions import Throttled, ValidationError
+from rest_framework.exceptions import APIException, Throttled
 
 from accounts.services.rate_limiter import RateLimiter
-from .constants import ActionType, ERROR_MESSAGES, INVALID_ERRORS
+from .constants import ActionType, ERROR_MESSAGES
 
 
 class RateLimitMixin:
     rate_limiter_class = RateLimiter
+    rate_limiter_action: str = None
 
-    def check_rate_limit(self, request, action_type: ActionType):
+    def check_rate_limit(self, request, action_type: str):
         identifiers = {
             "ip_address": request.META.get('REMOTE_ADDR'),
             "cellphone": request.data.get('cellphone')
@@ -20,7 +21,7 @@ class RateLimitMixin:
             if is_blocked:
                 raise Throttled(detail=ERROR_MESSAGES[action_type].format(wait_time=wait_time))
 
-    def handle_invalid_attempt(self, request, action_type: ActionType):
+    def handle_invalid_attempt(self, request):
         identifiers = {
             "ip_address": request.META.get('REMOTE_ADDR'),
             "cellphone": request.data.get('cellphone')
@@ -29,17 +30,17 @@ class RateLimitMixin:
         rate_limiter = self.rate_limiter_class()
 
         for identifier_type, identifier_value in identifiers.items():
-            if rate_limiter.increment_attempts(action_type, identifier_value):
+
+            if rate_limiter.increment_attempts(self.rate_limiter_action, identifier_value):
                 raise Throttled(detail=ERROR_MESSAGES["blocked"])
 
     def create(self, request, *args, **kwargs):
-        self.check_rate_limit(request, self.action)
+        if self.rate_limiter_action is None:
+            raise APIException("Rate limiter action is not defined")
 
-        try:
+        if self.rate_limiter_action not in ActionType.values():
             return super().create(request, *args, **kwargs)
-        except ValidationError as exc:
-            # Increment only if certain errors occur
-            for error_key in INVALID_ERRORS.keys():
-                if error_key in exc.detail:
-                    self.handle_invalid_attempt(request, self.action)
-            raise exc
+
+        self.check_rate_limit(request, self.rate_limiter_action)
+
+        return super().create(request, *args, **kwargs)
