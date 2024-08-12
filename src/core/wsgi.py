@@ -1,5 +1,5 @@
 """
-WSGI config for Achareh project.
+WSGI config for Auth-Service project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 

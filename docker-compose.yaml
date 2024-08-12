@@ -1,9 +1,9 @@
 version: '3.9'
-
+name: auth_service
 services:
   app:
-    container_name: achareh_app
-    image: achareh:latest
+    container_name: auth_service_app
+    image: auth_service:latest
     build:
       context: .
       dockerfile: Dockerfile
@@ -17,17 +17,17 @@ services:
     env_file:
       - .compose/config.env
     networks:
-      - achareh
+      - auth_service
     ports:
       - "8000:8000"
     restart: always
 
   redis:
-    container_name: achareh_redis
+    container_name: auth_service_redis
     image: redis:7.2
     command: [ "redis-server", "--requirepass", "redis_password" ]
     networks:
-      - achareh
+      - auth_service
     ports:
       - "6379:6379"
     restart: always
@@ -35,14 +35,14 @@ services:
       - redis-data:/data
 
   postgres:
-    container_name: achareh_postgres
+    container_name: auth_service_postgres
     image: postgres:16.2
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: achareh
+      POSTGRES_DB: auth_service
     networks:
-      - achareh
+      - auth_service
     ports:
       - "5432:5432"
     restart: always
@@ -50,8 +50,8 @@ services:
       - postgres-data:/var/lib/postgresql/data
 
   celery:
-    container_name: achareh_celery
-    image: achareh:latest
+    container_name: auth_service_celery
+    image: auth_service:latest
     build:
       context: .
       dockerfile: Dockerfile.local
@@ -62,12 +62,12 @@ services:
     env_file:
       - .compose/config.env
     networks:
-      - achareh
+      - auth_service
     restart: always
 
 
 networks:
-  achareh:
+  auth_service:
     driver: bridge
 
 volumes:

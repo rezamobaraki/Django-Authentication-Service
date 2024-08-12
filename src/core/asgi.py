@@ -1,5 +1,5 @@
 """
-ASGI config for Achareh project.
+ASGI config for AuthService project.
 
 It exposes the ASGI callable as a module-level variable named ``application``.
 

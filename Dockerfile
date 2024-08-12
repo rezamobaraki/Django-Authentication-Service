@@ -1,6 +1,6 @@
 # Stage 1: Build stage
 FROM python:3.12-slim as builder
-
+LABEL tag="auth_service"
 LABEL authors="Reza Mobaraki ~ Rezoo"
 
 # Set environment variables

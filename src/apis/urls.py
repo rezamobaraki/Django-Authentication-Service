@@ -5,9 +5,9 @@ from rest_framework import permissions
 
 schema_view = get_schema_view(
     openapi.Info(
-        title="Achareh Auth Service API",
+        title="Authentication Service API",
         default_version='v1',
-        description="Achareh Auth Service APIs",
+        description="Authentication Service APIs",
         contact=openapi.Contact(email="rezam578@gmail.com"),
         license=openapi.License(name="BSD License"),
     ),

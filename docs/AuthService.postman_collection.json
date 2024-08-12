@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "f30baf45-0abe-4d96-9f73-8d0ac4cc10d7",
-		"name": "Achareh-AuthService",
+		"name": "AuthService",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "36182462"
 	},
