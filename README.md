@@ -32,7 +32,7 @@ process.
 Personal notes on rate limiting: I handle two approach of rate limiting in this project.
 
 1. Rate limiting throughout hole project or service which is more efficient and clean.
-2. Rate limiting throughout Actions (Login, Registration) which in there are too many unnecessary logics and codes. [(I have implemented this one on another branch)](https://github.com/MrRezoo/Django-Authentication-Service/tree/backup-main-different-rate-limiter-logic)
+2. Rate limiting throughout Actions (Login, Registration) which in there are too many unnecessary logics and codes. [(I have implemented this one on another branch)](https://github.com/rezamobaraki/Django-Authentication-Service/tree/backup-main-different-rate-limiter-logic)
 
 ``` text
 Besides the above notes,
